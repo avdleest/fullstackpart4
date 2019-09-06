@@ -2,7 +2,7 @@ post http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-    "title": "Vet coole blog",
+    "title": "UNIT JONGEN!",
     "author": "van der Feest",
     "url": "www.google.com",
     "likes": 5
