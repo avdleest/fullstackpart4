@@ -40,7 +40,8 @@ describe('posting a new blog', () => {
     const newBlog = new Blog({
       title: newTitle,
       author: "Unknown author",
-      url: "http://www.letmegooglethatforyou.com"
+      url: "http://www.letmegooglethatforyou.com",
+      likes: 5
     })
 
     await api
@@ -50,16 +51,41 @@ describe('posting a new blog', () => {
       .expect('Content-Type', /application\/json/)
 
     const blogsAtEnd = await helper.blogsInDb()
-    console.log(`blogs at end: ${blogsAtEnd.length}`)
     expect(blogsAtEnd.length).toBe(helper.initialBlogs.length + 1)
 
     const contents = blogsAtEnd.map(blogs => blogs.title)
     expect(contents).toContain(newTitle)
   })
+
+  test('if the likes property is not provided it defaults to 0', async () => {
+    const newBlog = new Blog({
+      title: 'Without likes',
+      author: "Unknown author",
+      url: "http://www.letmegooglethatforyou.com",
+    })
+
+    const resultBlog = await api
+      .post('/api/blogs')
+      .send(newBlog)
+      .expect(201)
+
+    expect(resultBlog.body.likes).toBe(0)
+  })
+
+  test('when not providing title and url 400 Bad Request is received as response', async () => {
+    const newBlog = new Blog({
+      author: "Unknown author 2"
+    })
+
+    await api
+      .post('/api/blogs')
+      .send(newBlog)
+      .expect(400)
+
+  })
 })
 
-
 afterAll(() => {
-  mongoose.disconnect()
-  //mongoose.connection.close()
+  // mongoose.disconnect()
+  mongoose.connection.close()
 })
