@@ -46,6 +46,12 @@ test('the amount of blogs is the correct length', async () => {
   expect(data.body.length).toBe(3)
 })
 
+test('unique identifier property is named id', async () => {
+  const data = await api.get('/api/blogs')
+  expect(data.body[0].id).toBeDefined()
+})
+
+
 afterAll(() => {
   mongoose.connection.close()
 })
