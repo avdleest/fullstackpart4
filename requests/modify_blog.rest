@@ -1,0 +1,9 @@
+put http://localhost:3003/api/blogs/5d728799ec7a7b41a4711502
+Content-Type: application/json
+
+{
+    "title": "Vette nieuwe titel",
+    "author": "van der Feest",
+    "url": "www.google.com",
+    "likes": 300
+}
