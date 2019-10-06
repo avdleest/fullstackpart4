@@ -3,11 +3,12 @@ const Blog = require('../models/blog')
 const User = require('../models/user')
 
 blogsRouter.get('/', async (request, response) => {
-  const blogs = await Blog.find({})
-  response.json(blogs)
+  const blogs = await Blog
+    .find({}).populate('users', { name: 1, username: 1 })
+  response.json(blogs.map(b => b.toJSON()))
 })
 
-blogsRouter.post('/', async (request, response, next) => {
+blogsRouter.post('/', async (request, response) => {
   const body = request.body
   const user = await User.findById(body.userId)
 
