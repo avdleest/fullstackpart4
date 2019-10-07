@@ -1,10 +1,10 @@
 post http://localhost:3003/api/blogs
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imdyb3RlYmFhcmQiLCJpZCI6IjVkOWI0ODM3ZDFkZWVkMTUyY2M0ODBmMCIsImlhdCI6MTU3MDQ1ODAyNX0.LNLa44WkypaLU1m6Y3SgqocgRi91l25DafgSw4YbVgs
 
 {
-    "title": "Vette nieuwe blog",
-    "author": "van der Feest",
+    "title": "ALLERNIEUWSTE VEEEEETTTE BLOG",
+    "author": "toch iemand anders",
     "url": "www.google.com",
-    "likes": 5,
-    "userId": "5d9a5af24e6d7133cc732c35"
+    "likes": 5
 }
