@@ -70,7 +70,8 @@ blogsRouter.delete('/:id', async (request, response, next) => {
 })
 
 blogsRouter.put('/:id/comments', async (request, response, next) => {
-  const comment = request.body.content
+  console.log('request body: ', request.body)
+  const comment = request.body.comment
 
   try {
     const existingBlog = await Blog.findById(request.params.id)
